@@ -1,5 +1,4 @@
 class Comment
-<<<<<<< HEAD
 	include Mongoid::Document
   	include Mongoid::Timestamps
 
@@ -13,7 +12,4 @@ class Comment
   	 belongs_to :post
 
 
-	end
-=======
 end
->>>>>>> e222d25e8246153ff10b6872742a333fe79e55c1

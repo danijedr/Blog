@@ -7,11 +7,8 @@ class Post
   field :title, type: String
   field :archived, type: Boolean, default: false
 
-<<<<<<< HEAD
   has_many :comments
 
-=======
->>>>>>> e222d25e8246153ff10b6872742a333fe79e55c1
   validates_presence_of :body, :title
 
   belongs_to :user

@@ -1,11 +1,6 @@
 class User
-<<<<<<< HEAD
-    include Mongoid::Document
-    include Mongoid::Timestamps
-=======
   include Mongoid::Document
   include Mongoid::Timestamps
->>>>>>> e222d25e8246153ff10b6872742a333fe79e55c1
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
@@ -17,10 +12,7 @@ class User
   validates_presence_of :encrypted_password
 
   has_many :posts
-<<<<<<< HEAD
   has_many :comments
-=======
->>>>>>> e222d25e8246153ff10b6872742a333fe79e55c1
 
   ## Recoverable
   field :reset_password_token,   type: String
