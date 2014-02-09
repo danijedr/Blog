@@ -1,4 +1,5 @@
 class Comment
+<<<<<<< HEAD
 	include Mongoid::Document
   	include Mongoid::Timestamps
 
@@ -13,3 +14,6 @@ class Comment
 
 
 	end
+=======
+end
+>>>>>>> e222d25e8246153ff10b6872742a333fe79e55c1
