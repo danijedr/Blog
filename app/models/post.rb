@@ -19,4 +19,13 @@ class Post
     update_attribute :archived, true
   end
 
+  def hotness
+    value=0 
+    value=1 if comments.length>=3 
+    return 3+value if Time.now-created_at<24.hours
+    return 2+value if Time.now-created_at<72.hours
+    return 1+value if Time.now-created_at<7.days
+    return 0+value
+  end
+
 end

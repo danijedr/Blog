@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   expose_decorated(:posts) { Post.all }
   expose_decorated(:post, attributes: :post_params)
-  expose(:tag_cloud) { [] }
+  expose(:tag_cloud) {make_tag}
+
 
   def index
   end
@@ -11,6 +12,9 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def comments
   end
 
   def update
@@ -48,5 +52,23 @@ class PostsController < ApplicationController
   def post_params
     return if %w{mark_archived}.include? action_name
     params.require(:post).permit(:body, :title, :tags)
+  end
+
+  def make_tag
+   temp_array = [] 	
+   	posts.each do |post|
+		post.tags_array.each do |tag|
+			temp_array << tag
+		end
+	end
+
+   hash_array = Hash.new(0.0)
+	temp_array.each do |tmp|
+	 	if !hash_array[tmp].nil?
+			hash_array[tmp] = hash_array[tmp] +1 
+		end
+	end
+   
+  hash_array.to_a.sort
   end
 end

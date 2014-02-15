@@ -1,0 +1,6 @@
+class CommentsController < ApplicationController
+
+	def mark_as_not_abusive
+		comment.update_attribute(abusive, true)		
+	end
+end

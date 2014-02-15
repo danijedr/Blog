@@ -13,6 +13,7 @@ class User
 
   has_many :posts
   has_many :comments
+  has_many :votes
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -42,4 +43,6 @@ class User
   def to_s
     nickname.present? ? nickname : name
   end
+  
+  
 end

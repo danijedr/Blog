@@ -11,5 +11,14 @@ class Comment
   	 belongs_to :user
   	 belongs_to :post
 
+  	 has_many :votes
+	
+	 def non_abusive
+		update_attribute :abusive, false
+	 end	
+	
+	 def mark_abusive
+		update_attribute :abusive, true
+	 end
 
 end
