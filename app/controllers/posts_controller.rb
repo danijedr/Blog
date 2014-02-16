@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   expose_decorated(:posts) { Post.all }
   expose_decorated(:post, attributes: :post_params)
   expose(:tag_cloud) {make_tag}
+  expose(:comments)
+  expose(:comment) {Comment.new}
 
 
   def index
@@ -15,6 +17,11 @@ class PostsController < ApplicationController
   end
 
   def comments
+  if current_user.owner? post 
+    post.comments
+  else
+    post.comments.is_not_abusive
+  end
   end
 
   def update
@@ -34,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def mark_archived
-    # post = Post.find params[:id]
     post.archive!
     render action: :index
   end
@@ -51,7 +57,7 @@ class PostsController < ApplicationController
 
   def post_params
     return if %w{mark_archived}.include? action_name
-    params.require(:post).permit(:body, :title, :tags)
+    params.require(:post).permit(:body, :title, :tags, user_id)
   end
 
   def make_tag
@@ -71,4 +77,6 @@ class PostsController < ApplicationController
    
   hash_array.to_a.sort
   end
+
+  
 end

@@ -12,6 +12,8 @@ class Comment
   	 belongs_to :post
 
   	 has_many :votes
+
+	 scope :is_not_abusive, -> { where(abusive: false)}
 	
 	 def non_abusive
 		update_attribute :abusive, false
